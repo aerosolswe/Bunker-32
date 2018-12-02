@@ -19,15 +19,22 @@ public class Player : MonoBehaviour {
 	public float fireRate = 0.3f;
 	public float fireTime = 0;
 
+	private bool canPlay = false;
+
 	void Awake() {
 		instance = this;
-		vertical = 0;
-		horizontal = 0;
-		rb.velocity = Vector2.zero;
 	}
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
+	}
+
+	public void ActivatePlay() {
+		canPlay = true;
+	}
+
+	public void InactivatePlay() {
+		canPlay = false;
 	}
 	
 	public void Fire() {

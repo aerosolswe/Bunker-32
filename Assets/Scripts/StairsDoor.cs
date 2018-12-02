@@ -11,11 +11,7 @@ public class StairsDoor : MonoBehaviour {
 
 		if(coll.gameObject.GetComponent<Player>() != null) {
 			hit = true;
-			StartCoroutine(loadNextLevel());
+			Loader.LoadLevel("Main");
 		}
-	}
-
-	IEnumerator loadNextLevel() {
-		yield return SceneManager.LoadSceneAsync("Main");
 	}
 }

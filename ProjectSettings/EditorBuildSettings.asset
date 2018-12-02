@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stairs.unity
     guid: f37dd04f0c32b9f47aff7339cc436ae6
+  - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: da570c3a7a07d9941894a65a36240021
   m_configObjects: {}
