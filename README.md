@@ -1,5 +1,3 @@
-* [Play here](https://aerosolswe.github.io/Bunker-32/)
-
 ## Ludum Dare 43
 
 ## Bunker 32
@@ -37,5 +35,3 @@ The player has been fighting his entire life, tired of it. Cant see any other so
 -4 Levels
 --You go deeper into the bunker to reach the final Level
 --Stairs are gates to traverse levels
-
-![scr1.png](///raw/47c/e1/z/1d7cc.png)![scr2.png](///raw/47c/e1/z/1d7cd.png)
