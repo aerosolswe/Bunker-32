@@ -26,6 +26,8 @@ public class BasicEnemy : Enemy {
 	public AudioSource deadSource;
 	public AudioSource fireSource;
 
+	private bool dead = false;
+
 	void Start() {
 		rigidbody = GetComponent<Rigidbody2D>();
 		animator = GetComponentInChildren<Animator>();
@@ -64,7 +66,7 @@ public class BasicEnemy : Enemy {
 
 		Health -= hitInfo.damage;
 
-		if(Health <= 0) {
+		if(Health <= 0 && !dead) {
 			StartCoroutine(Die());
 		}
 	}
@@ -190,6 +192,7 @@ public class BasicEnemy : Enemy {
 	}
 
 	IEnumerator Die() {
+		dead = true;
 		agent.Stop();
 		GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		GetComponent<Rigidbody2D>().angularVelocity = 0;

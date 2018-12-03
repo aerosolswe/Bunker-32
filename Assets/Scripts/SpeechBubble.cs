@@ -11,6 +11,7 @@ public class SpeechBubble : MonoBehaviour {
 		SpeechBubble sb = go.GetComponent<SpeechBubble>();
 		sb.textObject.text = text;
 		sb.followTransform = parent.transform;
+		go.SetActive(true);
 	}
 
 	public static WaitForSeconds removeDelay = new WaitForSeconds(2);
@@ -36,6 +37,8 @@ public class SpeechBubble : MonoBehaviour {
 
 		width = textWidth + 0.15f;
 		height = textHeight + 0.25f;
+		width = Mathf.Clamp(width, 0, 3);
+		height = Mathf.Clamp(height, 0, 2);
 
 		Vector2 size = new Vector2(width, height);
 		spriteRenderer.size = size;
