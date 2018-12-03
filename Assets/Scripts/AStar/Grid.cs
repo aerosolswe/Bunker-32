@@ -18,12 +18,23 @@ public class Grid : MonoBehaviour {
     float nodeDiameter;
     int gridSizeX, gridSizeY;
 
+    public static bool generated = false;
+
+    private int centerX;
+    private int centerY;
+
     public void Generate() {
         nodeDiameter = nodeRadius * 2;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
 
         CreateGrid();
+
+        generated = true;
+    }
+
+    void OnDisable() {
+        generated = false;
     }
 
     public int MaxSize {
@@ -81,7 +92,7 @@ public class Grid : MonoBehaviour {
 
         int x = Mathf.RoundToInt((gridSizeX - 1) * percentX);
         int y = Mathf.RoundToInt((gridSizeY - 1) * percentY);
-        
+
         return grid[x, y];
     }
 

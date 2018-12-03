@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject playerPrefab;
 	public GameObject splatPrefab;
+	public GameObject speechPrefab;
+
+	public string[] deathTexts;
+
+	public int maxLevels = 4;
 
 	void Awake() {
 		if(instance != null) {
@@ -19,13 +24,21 @@ public class GameManager : MonoBehaviour {
 
 		DontDestroyOnLoad(this);
 	}
+
+	public string GetRandomDeathText() {
+		return deathTexts[Random.Range(0, deathTexts.Length)];
+	}
 	
 	public int CurrentLevel {
 		get {
 			return PlayerPrefs.GetInt("CURRENT_LEVEL", 0);
 		}
 		set {
-			PlayerPrefs.SetInt("CURRENT_LEVEL", value);
+
+			int level = value;
+			level = Mathf.Clamp(level, 0, maxLevels);
+			PlayerPrefs.SetInt("CURRENT_LEVEL", level);
+			PlayerPrefs.Save();
 		}
 	}
 }

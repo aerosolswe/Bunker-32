@@ -13,18 +13,21 @@ public class MenuManager : MonoBehaviour {
 	public void Start() {
 		if(GameManager.instance.CurrentLevel == 0) {
 			continueButton.interactable = false;
+		} else {
+			continueButton.interactable = true;
 		}
 	}
 
 	public void ClickedContinue() {
 		canvasGroup.interactable = false;
-
+		AudioManager.instance.PlayClickSource();
 		Loader.LoadLevel("Main");
 	}
 
 	public void ClickedNewGame() {
 		canvasGroup.interactable = false;
 
+		AudioManager.instance.PlayClickSource();
 		GameManager.instance.CurrentLevel = 0;
 
 		Loader.LoadLevel("Main");

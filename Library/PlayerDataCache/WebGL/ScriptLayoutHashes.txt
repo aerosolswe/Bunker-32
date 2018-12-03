@@ -6,6 +6,7 @@ Assets/Scenes/Menu.unity
 Assets/Scenes/Main.unity
 Assets/Scenes/Stairs.unity
 Assets/Scenes/Loading.unity
+Assets/Scenes/DeathScene.unity
 SceneListEnd?
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 7b803eb2910e9b4cd5e521ae07b9f7d6 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
@@ -171,20 +172,30 @@ d75dc834c5dec688db75a55a1724c90f UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 98d69a140ec0084cde3b6a5e09aea295 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-664e5ab4c58f79da34b4bd7c766a88ca Assembly-CSharp.dll:.LevelGenerator
+985f45d05c9ef45be381840d4ab6bd81 Assembly-CSharp.dll:.LevelGenerator
 aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 0a006f3734181ba8b26758f0866152c0 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
-0c548910d95c6905ac5c89da3f6120ef Assembly-CSharp.dll:.GameManager
+7f121a87b93ea686dfbc9caa2339de25 Assembly-CSharp.dll:.GameManager
 c2d656d46b50c42750f62669d4e1e0d7 Assembly-CSharp.dll:.Grid
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.StretchSprite
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 2f9af06a78208a67db480e9bfed4a076 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
-760987a8fcfd1ac8e246281894da105e Assembly-CSharp.dll:.Player
+555632d2e838b6ace407e8aa33958a72 Assembly-CSharp.dll:.Player
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.Loader
-2fd7625e6af73e929346dcfd7484395f Assembly-CSharp.dll:.Enemy
-f354658d669fcc69809197a5d1ac416e Assembly-CSharp.dll:.BasicEnemy
+898e022287d136830e7820be01673b3f Assembly-CSharp.dll:.Enemy
+7083a5fa12d19ad5172a6ca8e3bb0f78 Assembly-CSharp.dll:.BasicEnemy
 4e47d735d709f53272a3e4cfd630be6f Assembly-CSharp.dll:.Splat
 c55063a114765fce5fe10efe3066aa72 Assembly-CSharp.dll:.EnemyBulletPool
 02a8030f91c8110e44f8a7e9ca39c794 Assembly-CSharp.dll:.EnemyBullet
+8bd153f515e69ccad9b81adf334818e4 Assembly-CSharp.dll:.SpeechBubble
+a09d2322b052f9033510c395f23eb263 Assembly-CSharp.dll:.DeathScene
+85abb8d34aa02aa4b24219930276520f Assembly-CSharp.dll:.DestroyAfterTime
+dd2181e1d4b64e8fbed9f27dca14d361 Assembly-CSharp.dll:.HealthObject
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.EndComputer
+b98c75a075aec58483a36f2cad8290cf Assembly-CSharp.dll:.EndScene
+47229fc1e3120817566552f2d089a59e Assembly-CSharp.dll:.HealthBar
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.BackButton
+7a2cf24d5d3ed179e0150bec3ed57e73 Assembly-CSharp.dll:.AudioManager
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.SplashManager

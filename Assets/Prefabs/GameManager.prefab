@@ -55,3 +55,11 @@ MonoBehaviour:
     type: 2}
   splatPrefab: {fileID: 1833217948581616, guid: b672b8d3ee2575d49aa7ae1d0688320b,
     type: 2}
+  speechPrefab: {fileID: 1409041443606042, guid: 94fab50e1b4a7c94c92ff9f575428fc1,
+    type: 2}
+  deathTexts:
+  - Why
+  - My family
+  - But
+  - Wait
+  - Please

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -9,9 +10,15 @@ public class Player : MonoBehaviour {
 		plObject.transform.position = position;
 		plObject.SetActive(true);
 	}
+	
+	public static WaitForSeconds deathDelay = new WaitForSeconds(2);
 
 	public static Player instance = null;
 	private Rigidbody2D rb;
+
+	public AudioSource hitSource;
+	public AudioSource deadSource;
+	public AudioSource fireSource;
 
 	public Animator animator;
 	public Transform bulletPos;
@@ -20,11 +27,15 @@ public class Player : MonoBehaviour {
 
 	public float walkSpeed = 5;
 
+	public int baseHealth = 100;
+	private int currentHealth = 100;
+
 	private bool firing = false;
 	public float fireRate = 0.3f;
 	public float fireTime = 0;
 
 	private bool canPlay = false;
+	private bool dead = false;
 
 	void Awake() {
 		instance = this;
@@ -32,6 +43,8 @@ public class Player : MonoBehaviour {
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
+		currentHealth = baseHealth;
+		dead = false;
 	}
 
 	public void ActivatePlay() {
@@ -64,13 +77,47 @@ public class Player : MonoBehaviour {
 		b.transform.position = bulletPos.position;
 		
 		b.SetActive(true);
+		fireSource.Play();
 	}
 
 	public virtual void RecieveDamage(HitInfo hitInfo) {
+		Splat.Create(3, this.transform.position);
+
+		hitSource.Play();
+
+		Health -= hitInfo.damage;
+
+		if(Health <= 0 && !dead) {
+			StartCoroutine(Die());
+		}
+	}
+
+	IEnumerator Die() {
+		dead = true;
+
+		deadSource.Play();
+
+		GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+		GetComponent<Rigidbody2D>().angularVelocity = 0;
+
+		animator.SetTrigger("die");
+		
+		CameraManager.instance.Zoom(3);
+
+		// Squeeel
+		yield return deathDelay;
+
+		Splat.Create(10, this.transform.position, 75f);
+
+		yield return deathDelay;
+		// restart
+		SceneManager.LoadScene("DeathScene");
 
 	}
 
 	void Update () {
+		if(Dead) return;
+
 		HandleInput();
 		HandleRotation();
 
@@ -122,31 +169,22 @@ public class Player : MonoBehaviour {
 
 		vertical = Input.GetAxisRaw("Vertical");
 		horizontal = Input.GetAxisRaw("Horizontal");
-		/*if(Input.GetKeyDown(KeyCode.W)) {
-			vertical += 1;
-		}
-		if(Input.GetKeyUp(KeyCode.W)) {
-			vertical -= 1;
-		}
-		if(Input.GetKeyDown(KeyCode.S)) {
-			vertical -= 1;
-		}
-		if(Input.GetKeyUp(KeyCode.S)) {
-			vertical += 1;
-		}
+	}
 
-		if(Input.GetKeyDown(KeyCode.D)) {
-			horizontal += 1;
+	public bool Dead {
+		get {
+			return dead;
 		}
-		if(Input.GetKeyUp(KeyCode.D)) {
-			horizontal -= 1;
+	}
+
+	public int Health {
+		get {
+			return currentHealth;
 		}
-		if(Input.GetKeyDown(KeyCode.A)) {
-			horizontal -= 1;
+		set {
+			currentHealth = value;
+			currentHealth = Mathf.Clamp(currentHealth, 0, baseHealth);
 		}
-		if(Input.GetKeyUp(KeyCode.A)) {
-			horizontal += 1;
-		}*/
 	}
 
 	public Vector3 WorldToScreenPoint {
@@ -157,7 +195,10 @@ public class Player : MonoBehaviour {
 
 	public Vector2 MouseToWorldPoint {
 		get {
-			return CameraManager.instance.cam.ScreenToWorldPoint(Input.mousePosition);
+			Vector3 mousePos = Input.mousePosition;
+			mousePos.x = Mathf.Clamp(mousePos.x, 0, Screen.width);
+			mousePos.y = Mathf.Clamp(mousePos.y, 0, Screen.height);
+			return CameraManager.instance.cam.ScreenToWorldPoint(mousePos);
 		}
 	}
 }

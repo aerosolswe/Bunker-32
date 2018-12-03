@@ -6,10 +6,16 @@ public class Enemy : MonoBehaviour {
 
 	public int baseHealth = 50;
 	public int baseDamage = 20;
+
+	public int currentHealth;
+	public int damage;
 	
-	//protected bool firing = false;
-	public float fireRate = 0.3f;
+	public float fireRate = 0.6f;
 	protected float fireTime = 0;
+
+	
+	public float idleRate = 2f;
+	protected float idleTime = 0;
 
 	public Transform bulletPos;
 
@@ -24,7 +30,7 @@ public class Enemy : MonoBehaviour {
 
 		HitInfo hit = new HitInfo();
 		hit.sender = this.gameObject;
-		hit.damage = 25;
+		hit.damage = damage;
 		hit.direction = dir;
 
 		b.GetComponent<EnemyBullet>().hitInfo = hit;

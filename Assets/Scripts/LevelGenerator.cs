@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+using TMPro;
+
 public class PixelPos {
 
 	public PixelPos(int x, int y) {
@@ -24,8 +26,12 @@ public class LevelGenerator : MonoBehaviour {
 
 	public Tilemap floorMap;
 	public Tilemap wallMap;
+	public Tilemap propsMap;
 
 	public GameObject doorPrefab;
+	public GameObject enemyPrefab;
+	public GameObject healthPrefab;
+	public GameObject endComputerPrefab;
 
 	public TileBase baseFloor;
 	public TileBase topRightFloor;
@@ -50,22 +56,36 @@ public class LevelGenerator : MonoBehaviour {
 	public TileBase innerBottomLeftCorner;
 	public TileBase innerTopLeftCorner;
 	public TileBase innerTopRightCorner;
+	public TileBase pillar;
+	public TileBase table;
+
+	public int baseLevel = 0;
+	public bool testLevel = false;
 
 	void Start() {
 		GenerateMap();
 	}
 
 	public void GenerateMap() {
-		int currentLevel = 0;
+		int currentLevel = baseLevel;
 		if(GameManager.instance != null) {
 			currentLevel = GameManager.instance.CurrentLevel;
 		}
+
+		if(testLevel)
+			currentLevel = baseLevel;
+
+		spawnPoint.GetComponentInChildren<TextMeshPro>().text = "level " + (currentLevel + 1);
+
 		Texture2D lvl = levels[currentLevel];
+		float centerX = (float)lvl.width/2;
+		float centerY = (float)lvl.height/2;
 
 		var data = lvl.GetRawTextureData<Color32>();
 
 		floorMap.ClearAllTiles();
 		wallMap.ClearAllTiles();
+		propsMap.ClearAllTiles();
 
 		for (int y = 0; y < lvl.height; y++) {
             for (int x = 0; x < lvl.width; x++) {
@@ -278,11 +298,45 @@ public class LevelGenerator : MonoBehaviour {
 
 					door.SetActive(true);
 				}
+
+				// Pillar
+				if(HexEquals(cHex, '8', '3', 2)) {
+					wallMap.SetTile(new Vector3Int(x, y, 0), pillar);
+				} else if(HexEquals(cHex, '5', '0', 2)) {
+					// table
+					propsMap.SetTile(new Vector3Int(x, y, 0), table);
+				}
+
+				if(HexEquals(cHex, 'F', 'F', 4)) {
+					GameObject e = Instantiate(enemyPrefab);
+					float xPos = (x + 0.5f) - centerX;
+					float yPos = (y + 0.5f) - centerY;
+					e.transform.position = new Vector3(xPos, yPos, 0);
+					e.SetActive(true);
+				} else if(HexEquals(cHex, 'F', 'E', 4)) {
+					GameObject e = Instantiate(enemyPrefab);
+					e.GetComponent<BasicEnemy>().SetBoss();
+					float xPos = (x + 0.5f) - centerX;
+					float yPos = (y + 0.5f) - centerY;
+					e.transform.position = new Vector3(xPos, yPos, 0);
+					e.SetActive(true);
+				}  else if(HexEquals(cHex, '5', 'F', 4)) {
+					GameObject e = Instantiate(healthPrefab);
+					float xPos = (x + 0.5f) - centerX;
+					float yPos = (y + 0.5f) - centerY;
+					e.transform.position = new Vector3(xPos, yPos, 0);
+					e.SetActive(true);
+				} else if(HexEquals(cHex, '4', '0', 4)) {
+					// end computer
+					GameObject e = Instantiate(endComputerPrefab);
+					float xPos = (x + 0.5f) - centerX;
+					float yPos = (y + 0.5f) - centerY;
+					e.transform.position = new Vector3(xPos, yPos, 0);
+					e.SetActive(true);
+				}
 			}
 		}
 
-		float centerX = (float)lvl.width/2;
-		float centerY = (float)lvl.height/2;
 		floorMap.transform.parent.localPosition = new Vector3(-centerX, -centerY, 0);
 
 		Player.Create(spawnPoint.position);

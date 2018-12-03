@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Loading.unity
     guid: da570c3a7a07d9941894a65a36240021
+  - enabled: 1
+    path: Assets/Scenes/DeathScene.unity
+    guid: 4315bed2c46c9784794a7dd96316c617
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/630d3d32640a6fe4d959f994695537e6
+    guid: 630d3d32640a6fe4d959f994695537e6
   m_configObjects: {}

@@ -30,8 +30,8 @@ public class Door : MonoBehaviour {
 
 		if(p != null) {
 			GetComponent<Collider2D>().enabled = false;
+			GameManager.instance.CurrentLevel += 1;
 			Loader.LoadLevel("Stairs");
-			// Load staircase & next level
 		}
 	}
 	

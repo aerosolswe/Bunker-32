@@ -18,15 +18,37 @@ public class BasicEnemy : Enemy {
 	public float actionDelay = 1;
 	private bool aggro = false;
 
-	private int currentHealth;
+	public bool boss = false;
 
 	public LayerMask mask;
+
+	public AudioSource hitSource;
+	public AudioSource deadSource;
+	public AudioSource fireSource;
 
 	void Start() {
 		rigidbody = GetComponent<Rigidbody2D>();
 		animator = GetComponentInChildren<Animator>();
 		agent = GetComponent<Agent>();
+
 		currentHealth = baseHealth;
+		damage = baseDamage;
+
+		int randomDiff = Random.Range(0, 3);
+		if(randomDiff == 0) {
+			damage += 0;
+			currentHealth += 0;
+			fireRate -= 0;
+		} else if(randomDiff == 1) {
+			damage += 5;
+			currentHealth += 0;
+			fireRate -= 0.1f;
+		} else if(randomDiff == 2) {
+			damage += 15;
+			currentHealth += 0;
+			fireRate -= 0.4f;
+		}
+		
 
 		player = Player.instance;
 
@@ -34,9 +56,11 @@ public class BasicEnemy : Enemy {
 	}
 
 	public override void RecieveDamage(HitInfo hitInfo) {
-		Debug.Log("Should recieve damage: " + hitInfo.damage + " from " + hitInfo.sender);
+		aggro = true;
 
 		Splat.Create(3, this.transform.position);
+
+		hitSource.Play();
 
 		Health -= hitInfo.damage;
 
@@ -45,11 +69,23 @@ public class BasicEnemy : Enemy {
 		}
 	}
 
+	public void SetBoss() {
+		baseDamage = 10;
+		damage = 10;
+		baseHealth = 200;
+		currentHealth = 200;
+		fireRate = 0.15f;
+	}
+
 	void Update() {
+		if(!Grid.generated) return;
 		if(Health <= 0) return;
 		
 		fireTime -= Time.deltaTime;
 		fireTime = Mathf.Clamp(fireTime, 0, 100);
+		
+		idleTime -= Time.deltaTime;
+		idleTime = Mathf.Clamp(idleTime, 0, 100);
 
 		if(player == null) {
 			player = Player.instance;
@@ -58,12 +94,17 @@ public class BasicEnemy : Enemy {
 
 		float dstToPlayer = Vector3.Distance(this.transform.position, player.transform.position);
 		
-		if(dstToPlayer > 6 && !aggro) {
-			// Do idle / patroll
+		if(dstToPlayer > 10 && !aggro) {
+			// Do idle / patroll / look around
+			Idle();
 		} else {
 			// If aggroed or close enough
-
-			agent.MoveTo(player.transform.position);
+			if(!aggro) {
+				if(!CanSeePlayer()) return;
+			}
+			if(dstToPlayer > 2) {
+				agent.MoveTo(player.transform.position);
+			}
 
 			Vector3 dir = (player.transform.position - transform.position).normalized;
 			RaycastHit2D hit2D = Physics2D.Raycast(transform.position, dir, 100, mask);
@@ -87,6 +128,45 @@ public class BasicEnemy : Enemy {
 
 	}
 
+	public void Idle() {
+		lookDir = Vector3.Lerp(lookDir, agent.velocity.normalized, 10 * Time.deltaTime);
+
+		if(idleTime <= 0) {
+			idleTime = idleRate;
+			int randomIdleIndex = Random.Range(0, 3);
+			
+			
+			switch(randomIdleIndex) {
+				case 0:
+				break;
+				case 1:
+				agent.MoveTo(startPosition + new Vector3(Random.Range(-2, 2), Random.Range(-2, 2), 0));
+				break;
+				case 2:
+				break;
+			}
+		}
+
+	}
+
+	IEnumerator patrolRandom() {
+
+		yield return null;
+	}
+
+	public bool CanSeePlayer() {
+		Vector3 dir = (player.transform.position - transform.position).normalized;
+		RaycastHit2D hit2D = Physics2D.Raycast(transform.position, dir, 100, mask);
+		
+		if(hit2D.transform != null) {
+			if(hit2D.transform.tag == "Player") {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public void RotateTowards(Vector2 dir) {
         float rot_z = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.localRotation = Quaternion.Euler(0f, 0f, rot_z - 90);
@@ -96,6 +176,7 @@ public class BasicEnemy : Enemy {
 		if(fireTime <= 0) {
 			fireTime = fireRate;
 
+			fireSource.Play();
 			CreateBullet(dir);
 		}
 	}
@@ -107,6 +188,7 @@ public class BasicEnemy : Enemy {
 			animator.SetFloat("speed", s);
 		}
 	}
+
 	IEnumerator Die() {
 		agent.Stop();
 		GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -115,9 +197,12 @@ public class BasicEnemy : Enemy {
 
 		animator.SetTrigger("die");
 
+		SpeechBubble.Create(GameManager.instance.GetRandomDeathText(), this.gameObject);
+
 		// Squeeel
 		yield return deathDelay;
 
+		deadSource.Play();
 		Splat.Create(10, this.transform.position, 75f);
 		this.enabled = false;
 	}
