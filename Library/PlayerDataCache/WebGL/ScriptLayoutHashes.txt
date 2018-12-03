@@ -2,6 +2,7 @@ WebGL
 PlayerPath?
 C:/Users/Aero/Documents/Projects/Unity/LD43-Build
 SceneListBegin?
+Assets/Scenes/Splash.unity
 Assets/Scenes/Menu.unity
 Assets/Scenes/Main.unity
 Assets/Scenes/Stairs.unity
