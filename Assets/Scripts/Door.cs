@@ -17,7 +17,6 @@ public class Door : MonoBehaviour {
 
 	void Start () {
 		animator = GetComponent<Animator>();
-		player = Player.instance;
 		
 		if(!nextLevelDoor) {
 			GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
@@ -39,6 +38,11 @@ public class Door : MonoBehaviour {
 	void Update () {
 		if(!nextLevelDoor) return;
 
+		if(player == null) {
+			player = Player.instance;
+			return;
+		}
+		
 		float distance = Vector3.Distance(player.transform.position, transform.position);
 
 		if(distance < openDistance) {

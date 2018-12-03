@@ -15,10 +15,10 @@ public class PixelPos {
 }
 
 public class LevelGenerator : MonoBehaviour {
-	public static int CURRENT_LEVEL = 0;
 
 	private Dictionary<PixelPos, string> map = new Dictionary<PixelPos, string>();
 
+	public Grid grid;
 	public Transform spawnPoint;
 	public Texture2D[] levels;
 
@@ -56,8 +56,11 @@ public class LevelGenerator : MonoBehaviour {
 	}
 
 	public void GenerateMap() {
-
-		Texture2D lvl = levels[CURRENT_LEVEL];
+		int currentLevel = 0;
+		if(GameManager.instance != null) {
+			currentLevel = GameManager.instance.CurrentLevel;
+		}
+		Texture2D lvl = levels[currentLevel];
 
 		var data = lvl.GetRawTextureData<Color32>();
 
@@ -74,7 +77,7 @@ public class LevelGenerator : MonoBehaviour {
 					floorMap.SetTile(new Vector3Int(x, y, 0), baseFloor);
 
 					if(HexEquals(cHex, 'F', 'F', 2)) {
-						spawnPoint.position = new Vector3(x + 0.5f, y + 0.5f, 0);
+						spawnPoint.localPosition = new Vector3(x + 0.5f, y + 0.5f, 0);
 					}
 
 					string leftHex = GetHex(lvl, x - 1, y);
@@ -267,7 +270,7 @@ public class LevelGenerator : MonoBehaviour {
 					bool flipY = wallMap.HasTile(new Vector3Int(x, y - 1, 0));
 
 					GameObject door = Instantiate(doorPrefab);
-					door.transform.parent = this.transform;
+					door.transform.parent = floorMap.transform.parent;
 					door.transform.position = new Vector3(x + 0.5f, y + 0.5f, 0);
 
 					door.GetComponent<SpriteRenderer>().flipY = flipY;
@@ -278,9 +281,22 @@ public class LevelGenerator : MonoBehaviour {
 			}
 		}
 
-		Player.instance.transform.position = spawnPoint.position;
-		Player.instance.camera.transform.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y, Player.instance.camera.transform.position.z);
+		float centerX = (float)lvl.width/2;
+		float centerY = (float)lvl.height/2;
+		floorMap.transform.parent.localPosition = new Vector3(-centerX, -centerY, 0);
 
+		Player.Create(spawnPoint.position);
+		CameraManager.instance.transform.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y, CameraManager.instance.transform.position.z);
+		CameraManager.instance.player = Player.instance;
+
+		floorMap.RefreshAllTiles();
+		wallMap.RefreshAllTiles();
+
+		Invoke("GenerateGrid", 0.3f);
+	}
+
+	void GenerateGrid() {
+		grid.Generate();
 	}
 
 	public bool HexEquals(string hex, char c0, char c1, int i = 0, bool debug = false) {

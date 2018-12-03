@@ -2,6 +2,7 @@ WebGL
 PlayerPath?
 C:/Users/Aero/Documents/Projects/Unity/LD43-Build
 SceneListBegin?
+Assets/Scenes/Menu.unity
 Assets/Scenes/Main.unity
 Assets/Scenes/Stairs.unity
 Assets/Scenes/Loading.unity
@@ -22,7 +23,7 @@ c7dd12c15208b0447e101f80038706df UnityEngine.Timeline.dll:UnityEngine.Timeline.A
 64f3a13c1277a7f1324321d93d0ec13b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 f6637497451c9a030c421de4a1ad5cdb Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
 b14b4630cc47b6e9ea8a644551a6a8cc Unity.TextMeshPro.dll:TMPro.TMP_Text
-486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.CameraManager
+bc8c5bb21164497878b959c3ff51afef Assembly-CSharp.dll:.CameraManager
 53cefe5d98cadefbab750835e70b89c0 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 486cd95c82d8305219c352c06b776e1f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 da2091a04d360891450faf16cdf621f1 UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -126,9 +127,11 @@ dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 96f3ea9f23b6f08e60710ebb4af49174 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 9da1d05f3f23b20009718f0f39853e66 Assembly-CSharp.dll:.Door
 f16835701e71dd5d6fb1fed4b7aff1d8 Unity.TextMeshPro.dll:TMPro.TMP_Asset
+fe051fe3e2f68aa05badbeb3820b9116 Assembly-CSharp.dll:.Agent
 486cd95c82d8305219c352c06b776e1f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
 c55063a114765fce5fe10efe3066aa72 Assembly-CSharp.dll:.PlayerBulletPool
 eaf0bcdb10d442a4029d615f41d09957 Unity.TextMeshPro.dll:TMPro.TextContainer
+8ac2cb20ddb75491b9eb9408bc7d7879 Assembly-CSharp.dll:.Pathfinding
 cecf74a4a014467f492fa5579fb4b397 Facebook.Unity.Settings.dll:Facebook.Unity.Settings.FacebookSettings
 201273fb4f889724fb090164b7d6c657 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 486cd95c82d8305219c352c06b776e1f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -149,6 +152,7 @@ fc061f3ae8a876c0687e86378d4a447c UnityEngine.Networking.dll:UnityEngine.Networki
 e53cc67d84060d628c7f03fc725766d8 Unity.TextMeshPro.dll:TMPro.TMP_FontAsset
 392c5b921098bd4c139d9146d0efa6d7 Unity.TextMeshPro.dll:TMPro.TMP_Settings
 02a8030f91c8110e44f8a7e9ca39c794 Assembly-CSharp.dll:.PlayerBullet
+99e49450e22b991f4d07c1aed9d6c899 Assembly-CSharp.dll:.MenuManager
 ddcae71b3f91386237efd012a9eef2be UnityEngine.TestRunner.dll:UnityEngine.TestTools.EnumerableSetUpTearDownCommandState
 486cd95c82d8305219c352c06b776e1f UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 e033f131358cea5a0eabf9561e781deb UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
@@ -167,13 +171,20 @@ d75dc834c5dec688db75a55a1724c90f UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 98d69a140ec0084cde3b6a5e09aea295 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-d6523de502855c860729858bc443515d Assembly-CSharp.dll:.LevelGenerator
+664e5ab4c58f79da34b4bd7c766a88ca Assembly-CSharp.dll:.LevelGenerator
 aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 0a006f3734181ba8b26758f0866152c0 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+0c548910d95c6905ac5c89da3f6120ef Assembly-CSharp.dll:.GameManager
+c2d656d46b50c42750f62669d4e1e0d7 Assembly-CSharp.dll:.Grid
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.StretchSprite
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 2f9af06a78208a67db480e9bfed4a076 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
-ff87e761872db77da1975d73941ae94d Assembly-CSharp.dll:.Player
-486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.StretchSprite
+760987a8fcfd1ac8e246281894da105e Assembly-CSharp.dll:.Player
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.Loader
+2fd7625e6af73e929346dcfd7484395f Assembly-CSharp.dll:.Enemy
+f354658d669fcc69809197a5d1ac416e Assembly-CSharp.dll:.BasicEnemy
+4e47d735d709f53272a3e4cfd630be6f Assembly-CSharp.dll:.Splat
+c55063a114765fce5fe10efe3066aa72 Assembly-CSharp.dll:.EnemyBulletPool
+02a8030f91c8110e44f8a7e9ca39c794 Assembly-CSharp.dll:.EnemyBullet

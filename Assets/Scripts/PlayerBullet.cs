@@ -7,6 +7,7 @@ public class PlayerBullet : MonoBehaviour {
 	private Rigidbody2D rb;
 	public SpriteRenderer spriteRenderer;
 	public Vector3 target;
+	public HitInfo hitInfo;
 
 	public ParticleSystem trailPS;
 	public ParticleSystem explodePS;
@@ -44,6 +45,11 @@ public class PlayerBullet : MonoBehaviour {
 		destroying = true;
 
 		spriteRenderer.enabled = false;
+
+		Enemy e = coll.GetComponent<Enemy>();
+		if(e != null) {
+			e.RecieveDamage(hitInfo);
+		}
 
 		explodePS.gameObject.SetActive(true);
 		trailPS.gameObject.SetActive(false);

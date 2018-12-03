@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+	public static void Create(Vector3 position) {
+		GameObject plObject = Instantiate(GameManager.instance.playerPrefab);
+		plObject.transform.position = position;
+		plObject.SetActive(true);
+	}
+
 	public static Player instance = null;
 	private Rigidbody2D rb;
 
 	public Animator animator;
-	public Camera camera;
 	public Transform bulletPos;
-	private int vertical = 0;
-	private int horizontal = 0;
+	private float vertical = 0;
+	private float horizontal = 0;
 
 	public float walkSpeed = 5;
 
@@ -50,9 +55,19 @@ public class Player : MonoBehaviour {
 
 		GameObject b = PlayerBulletPool.instance.GetBullet();
 
+		HitInfo hit = new HitInfo();
+		hit.sender = this.gameObject;
+		hit.damage = 25;
+
+		b.GetComponent<PlayerBullet>().hitInfo = hit;
+
 		b.transform.position = bulletPos.position;
 		
 		b.SetActive(true);
+	}
+
+	public virtual void RecieveDamage(HitInfo hitInfo) {
+
 	}
 
 	void Update () {
@@ -105,7 +120,9 @@ public class Player : MonoBehaviour {
 			StopFire();
 		}
 
-		if(Input.GetKeyDown(KeyCode.W)) {
+		vertical = Input.GetAxisRaw("Vertical");
+		horizontal = Input.GetAxisRaw("Horizontal");
+		/*if(Input.GetKeyDown(KeyCode.W)) {
 			vertical += 1;
 		}
 		if(Input.GetKeyUp(KeyCode.W)) {
@@ -129,18 +146,18 @@ public class Player : MonoBehaviour {
 		}
 		if(Input.GetKeyUp(KeyCode.A)) {
 			horizontal += 1;
-		}
+		}*/
 	}
 
 	public Vector3 WorldToScreenPoint {
 		get {
-			return camera.WorldToScreenPoint(transform.position);
+			return CameraManager.instance.cam.WorldToScreenPoint(transform.position);
 		}
 	}
 
 	public Vector2 MouseToWorldPoint {
 		get {
-			return camera.ScreenToWorldPoint(Input.mousePosition);
+			return CameraManager.instance.cam.ScreenToWorldPoint(Input.mousePosition);
 		}
 	}
 }

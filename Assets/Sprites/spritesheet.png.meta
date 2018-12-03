@@ -77,6 +77,12 @@ TextureImporter:
     21300144: door_8
     21300146: door_9
     21300148: stairs
+    21300150: single_stairs
+    21300152: enemy_idle
+    21300154: enemy_run_0
+    21300156: enemy_run_1
+    21300158: green_bullet
+    21300160: char_dead
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -195,7 +201,8 @@ TextureImporter:
       physicsShape:
       - - {x: -8, y: 8}
         - {x: -8, y: -8}
-        - {x: 8, y: -8}
+        - {x: 6, y: -8}
+        - {x: 8, y: -6}
         - {x: 8, y: 8}
       tessellationDetail: 0
       bones: []
@@ -218,8 +225,8 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
+        - {x: -8, y: -6}
+        - {x: 8, y: -6}
         - {x: 8, y: 8}
       tessellationDetail: 0
       bones: []
@@ -242,7 +249,8 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: -8, y: 8}
-        - {x: -8, y: -8}
+        - {x: -8, y: -6}
+        - {x: -6, y: -8}
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       tessellationDetail: 0
@@ -407,8 +415,8 @@ TextureImporter:
       physicsShape:
       - - {x: -8, y: 8}
         - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+        - {x: 6, y: -8}
+        - {x: 6, y: 8}
       tessellationDetail: 0
       bones: []
       spriteID: 552c5e3f2d7baa642a1c8fe5b82a972d
@@ -449,8 +457,8 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
+      - - {x: -6, y: 8}
+        - {x: -6, y: -8}
         - {x: 8, y: -8}
         - {x: 8, y: 8}
       tessellationDetail: 0
@@ -621,10 +629,11 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: 8}
+      - - {x: 6, y: 8}
+        - {x: -8, y: 8}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
-        - {x: 8, y: 8}
+        - {x: 8, y: 6}
       tessellationDetail: 0
       bones: []
       spriteID: f5bd084e11f754c449587c2851cfb905
@@ -645,10 +654,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: 8}
+      - - {x: -8, y: 6}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
-        - {x: 8, y: 8}
+        - {x: 8, y: 6}
       tessellationDetail: 0
       bones: []
       spriteID: 704d29df25e85d84099a6b5160ef5fc5
@@ -669,7 +678,8 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: 8}
+      - - {x: -6, y: 8}
+        - {x: -8, y: 6}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
         - {x: 8, y: 8}
@@ -1029,10 +1039,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
+      - - {x: -6, y: 6}
+        - {x: -6, y: -8}
         - {x: 8, y: -8}
-        - {x: 8, y: 8}
+        - {x: 8, y: 6}
       tessellationDetail: 0
       bones: []
       spriteID: 62cdd45f5fd989f4e861681b6fc066b9
@@ -1053,10 +1063,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: 8}
+      - - {x: -8, y: 6}
         - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+        - {x: 6, y: -8}
+        - {x: 6, y: 6}
       tessellationDetail: 0
       bones: []
       spriteID: c7c74052ccffadc409832e2042c5dee6
@@ -1237,9 +1247,9 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
+      - - {x: -6, y: 8}
+        - {x: -6, y: -6}
+        - {x: 8, y: -6}
         - {x: 8, y: 8}
       tessellationDetail: 0
       bones: []
@@ -1262,9 +1272,9 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+        - {x: -8, y: -6}
+        - {x: 6, y: -6}
+        - {x: 6, y: 8}
       tessellationDetail: 0
       bones: []
       spriteID: 53894dd961d880f408385e2cee56cd0b
@@ -1769,13 +1779,133 @@ TextureImporter:
         width: 64
         height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: f0124a7e9f49afd4bb0faabcdc1924f3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: single_stairs
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 0
+        width: 47
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16397906b583c654294ba158f45c7fd7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_idle
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 277138f726830a542824c46c992fa503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_run_0
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa905cbd24691684391e22ff6632df9a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_run_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4df190339314224fb717257e18eacb4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green_bullet
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 32
+        width: 5
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18d6b04f58270004aa99d6f6743e7594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: char_dead
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5d2eb61b02c8884983a75b6dffca960
       vertices: []
       indices: 
       edges: []
