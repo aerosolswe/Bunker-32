@@ -20,10 +20,10 @@ public class CameraManager : MonoBehaviour {
 		player = Player.instance;	
 	}
 	
-	void Update () {
+	void FixedUpdate() {
 		if(player == null) return;
 
-		Vector3 middle = Vector3.Lerp(player.transform.position, player.MouseToWorldPoint, 0.5f);
+		Vector3 middle = Vector3.Lerp(player.transform.position, MouseToWorldPoint, 0.5f);
 
 		if(player.Dead) {
 			middle = player.transform.position;
@@ -64,4 +64,13 @@ public class CameraManager : MonoBehaviour {
 			yield return null;
 		}
 	}
+
+    public Vector2 MouseToWorldPoint {
+        get {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.x = Mathf.Clamp(mousePos.x, 0, Screen.width);
+            mousePos.y = Mathf.Clamp(mousePos.y, 0, Screen.height);
+            return CameraManager.instance.cam.ScreenToWorldPoint(mousePos);
+        }
+    }
 }

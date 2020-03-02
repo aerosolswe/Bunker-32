@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\Entity\Enemy.cs" />
     <Compile Include="Assets\Scripts\Entity\EnemyBullet.cs" />
     <Compile Include="Assets\Scripts\Entity\EnemyBulletPool.cs" />
+    <Compile Include="Assets\Scripts\Entity\Entity.cs" />
     <Compile Include="Assets\Scripts\Entity\HitInfo.cs" />
     <Compile Include="Assets\Scripts\Entity\Player.cs" />
     <Compile Include="Assets\Scripts\Entity\PlayerBullet.cs" />
@@ -91,9 +92,9 @@
     <Compile Include="Assets\Scripts\SpeechBubble.cs" />
     <Compile Include="Assets\Scripts\Splat.cs" />
     <Compile Include="Assets\Scripts\StretchSprite.cs" />
-    <Compile Include="Assets\Scripts\Ui\BackButton.cs" />
-    <Compile Include="Assets\Scripts\Ui\HealthBar.cs" />
-    <Compile Include="Assets\Scripts\Ui\SplashManager.cs" />
+    <Compile Include="Assets\Scripts\UI\BackButton.cs" />
+    <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
+    <Compile Include="Assets\Scripts\UI\SplashManager.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

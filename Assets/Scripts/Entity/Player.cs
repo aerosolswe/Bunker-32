@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour {
+public class Player : Entity {
 
 	public static void Create(Vector3 position) {
 		GameObject plObject = Instantiate(GameManager.instance.playerPrefab);
@@ -26,16 +26,12 @@ public class Player : MonoBehaviour {
 	private float horizontal = 0;
 
 	public float walkSpeed = 5;
-
-	public int baseHealth = 100;
-	private int currentHealth = 100;
-
+    
 	private bool firing = false;
 	public float fireRate = 0.3f;
 	public float fireTime = 0;
 
 	private bool canPlay = false;
-	private bool dead = false;
 
 	void Awake() {
 		instance = this;
@@ -170,35 +166,11 @@ public class Player : MonoBehaviour {
 		vertical = Input.GetAxisRaw("Vertical");
 		horizontal = Input.GetAxisRaw("Horizontal");
 	}
-
-	public bool Dead {
-		get {
-			return dead;
-		}
-	}
-
-	public int Health {
-		get {
-			return currentHealth;
-		}
-		set {
-			currentHealth = value;
-			currentHealth = Mathf.Clamp(currentHealth, 0, baseHealth);
-		}
-	}
-
+    
 	public Vector3 WorldToScreenPoint {
 		get {
 			return CameraManager.instance.cam.WorldToScreenPoint(transform.position);
 		}
 	}
-
-	public Vector2 MouseToWorldPoint {
-		get {
-			Vector3 mousePos = Input.mousePosition;
-			mousePos.x = Mathf.Clamp(mousePos.x, 0, Screen.width);
-			mousePos.y = Mathf.Clamp(mousePos.y, 0, Screen.height);
-			return CameraManager.instance.cam.ScreenToWorldPoint(mousePos);
-		}
-	}
+    
 }

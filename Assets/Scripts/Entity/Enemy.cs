@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : Entity {
 
-	public int baseHealth = 50;
-	public int baseDamage = 20;
+    public int baseDamage = 20;
 
-	public int currentHealth;
 	public int damage;
 	
 	public float fireRate = 0.6f;

@@ -20,7 +20,7 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	public void Start() {
-		GetComponent<AudioSource>().Play();
+		//GetComponent<AudioSource>().Play(); Starts music source
 	}
 
 	public void PlayClickSource() {
